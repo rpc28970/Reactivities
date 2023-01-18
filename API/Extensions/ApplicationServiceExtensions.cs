@@ -5,6 +5,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Infrastructure.Photos;
 using Infrastructure.Security;
+using Infrastructure.Utils;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
@@ -29,6 +30,12 @@ namespace API.Extensions
             services.AddScoped<IUserAccessor, UserAccessor>();
             services.AddScoped<IPhotoAccessor, PhotoAccessor>();
             services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+            services.AddSignalR();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new DateTimeConverter());
+                });
 
             return services;
         }
