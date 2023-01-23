@@ -3,6 +3,8 @@ import {Button, Header, Segment} from "semantic-ui-react";
 import axios from 'axios';
 import ValidationError from './ValidationError';
 
+//Testing Errors in App
+
 export default function TestErrors() {
     const [errors, setErrors] = useState(null);
 
